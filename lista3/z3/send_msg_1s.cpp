@@ -19,9 +19,8 @@ int main(int argc, char** argv)
     std::copy(argv + 1, argv + argc, std::ostream_iterator<const char*>(stream, " "));
     std::string text = stream.str();
 
-    while (true)
+    while (std::cout << text << std::endl;)
     {
-        std::cout << text << std::endl;
         std::this_thread::sleep_for(1s);
     }
 }

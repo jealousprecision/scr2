@@ -12,7 +12,7 @@ int main(int argc, char** argv)
         return 1;
     }
 
-    while (true)
+    while (std::cout)
     {
         for (int i = 1; i < argc; ++i)
         {
