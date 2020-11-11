@@ -6,15 +6,18 @@
 #define NANO_TO_MILLI 1000000
 
 void signal_handle(int sig);
+void signal_alarm(int sig);
+void signal_term(int sig);
+void signal_usr1(int sig);
 
 bool running = true;
 
 int main()
 {
-	signal(SIGALRM, signal_handle);
-	signal(SIGTERM, signal_handle);
-	signal(SIGUSR1, signal_handle);
-	signal(SIGUSR2, signal_handle);
+	signal(SIGALRM, signal_alarm);
+	signal(SIGTERM, signal_term);
+	signal(SIGUSR1, signal_usr1);
+	signal(SIGUSR2, SIG_IGN);
 
 	struct timespec tspec;
 	tspec.tv_sec = 0;
@@ -43,4 +46,20 @@ void signal_handle(int sig)
 		printf("Catched SIGUSR1\n");
 		break;
 	}
+}
+
+void signal_alarm(int sig)
+{
+	printf("Catched SIGALRM\n");
+}
+
+void signal_term(int sig)
+{
+	printf ("Catched SIGTERM\n");
+	running = false;
+}
+
+void signal_usr1(int sig)
+{
+	printf("Catched SIGUSR1\n");
 }
