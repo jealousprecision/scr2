@@ -21,23 +21,24 @@ int main(int argc, char** argv)
         return -1;
     }
 
-    int pipefd[2];
-    pipe(pipefd);
+    int pipe_fd[2];
+    pipe(pipe_fd);
 
     if (fork() == 0)
     {
-        return child_proc(pipefd);
+        return child_proc(pipe_fd);
     }
 
-    close(pipefd[P_READ]);
+    close(pipe_fd[P_READ]);
 
     int file_fd = open(argv[1], O_RDONLY);
     struct stat file_stats;
     fstat(file_fd, &file_stats);
 
-    sendfile(pipefd[P_WRITE], file_fd, NULL, file_stats.st_size);
+    //sendfile(pipefd[P_WRITE], file_fd, NULL, file_stats.st_size);
+    splice(file_fd, NULL, pipe_fd[P_WRITE], NULL, file_stats.st_size, 0);
 
-    close(pipefd[P_WRITE]);
+    close(pipe_fd[P_WRITE]);
     return 0;
 }
 
