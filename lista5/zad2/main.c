@@ -44,6 +44,7 @@ int main(int argc, char** argv)
 int child_proc(int pipefd[])
 {
     close(pipefd[P_WRITE]);
+    close(STDIN_FILENO);
     dup2(pipefd[P_READ], STDIN_FILENO);
     execlp("display", "display", NULL);
     return -1;

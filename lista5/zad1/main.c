@@ -1,5 +1,4 @@
 #include <unistd.h>
-#include <string.h>
 #include <time.h>
 #include <fcntl.h>
 #include <ctype.h>
@@ -15,8 +14,8 @@ int main(int argc, char** argv)
 {
     if (argc != 2)
     {
-        const char* usage_prompt = "usage: ./a.out textfile\n";
-        write(STDOUT_FILENO, usage_prompt, strlen(usage_prompt));
+        const char usage_prompt[] = "usage: ./a.out textfile\n";
+        write(STDOUT_FILENO, usage_prompt, sizeof(usage_prompt));
         return -1;
     }
 
