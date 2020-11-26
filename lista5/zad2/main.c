@@ -46,6 +46,7 @@ int child_proc(int pipefd[])
     close(pipefd[P_WRITE]);
     close(STDIN_FILENO);
     dup2(pipefd[P_READ], STDIN_FILENO);
+    close(pipefd[P_READ]);
     execlp("display", "display", NULL);
     return -1;
 }
