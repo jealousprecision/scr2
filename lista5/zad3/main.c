@@ -23,7 +23,6 @@ int main(int argc, const char** argv)
         send_buf(file_fd, fd_pipe);
         close(file_fd);
 
-        printf("Sent file: %s\n", argv[file_idx]);
         sleep(2);
     }
 
