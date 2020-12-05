@@ -62,8 +62,7 @@ int main()
 
 int child_proc()
 {
-    //execlp("display", "display", "-update", "1", out_filename, NULL);
-    execlp("eom", "eom", out_filename, NULL);
+    execlp("display", "display", "-update", "1", out_filename, NULL);
     return -1;
 }
 
