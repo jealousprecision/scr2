@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <pthread.h>
 #include <time.h>
-#include <math.h>
 #include <stdint.h>
 
 #define THREAD_NO 12
@@ -52,10 +51,10 @@ void* monte_carlo_thread(void* arg)
 
     for (uint64_t i = 0; i < ITER_PER_THREAD; ++i)
     {
-        double x = random() / (double)(RAND_MAX) - 0.5;
-        double y = random() / (double)(RAND_MAX) - 0.5;
+        double x = random() / (double)(RAND_MAX);
+        double y = random() / (double)(RAND_MAX);
 
-        circle_points += (sqrt(x * x + y * y) <= 0.5);
+        circle_points += (x * x + y * y < 1.0);
     }
 
     monte_carlo_data* result = arg;

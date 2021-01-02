@@ -1,0 +1,15 @@
+Zad. 5
+    Wątki "joinable" nie oddadzą swoich zasobów automatycznie po skończonym
+wywołaniu funkcji, zasoby te należy ręcznie odzyskać za pomocą funkcji
+pthread_join.
+
+    Wątki "detached" automatycznie zwalniają swoje zasoby po skończonym
+wywołaniu funkcji, co uniemożliwia przechwycenie wartości zwróconej przez taki
+wątek.
+
+Zad. 6
+    Program kończy się z błędem "Segmentation Fault" ze względu na
+niewystarczającą wielkość stosu domyślnie przydzielanom wątkom (domyślnie,
+około 8MB, kiedy sama tablica A wymaga conajmniej 16MB). Rozwiązaniem jest
+użycie funkcji pthread_attr_setstacksize umożliwiającej zmianę domyślnej
+wielkości stosu.
