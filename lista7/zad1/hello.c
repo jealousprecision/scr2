@@ -14,7 +14,6 @@ void* hello_scr(void* void_arg)
 {
     hello_scr_arg* arg = void_arg;
 
-    //sleep(1);
     printf("Hello SCR. Written by thread %i\n", arg->thread_id);
 
     pthread_exit(NULL);
